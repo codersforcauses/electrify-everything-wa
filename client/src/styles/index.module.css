@@ -1,0 +1,37 @@
+.hero {
+    width:  80vw;
+    height: auto;
+    background-color: #FDEFBD;
+    border-radius: 1vw;
+    display: flex;
+}
+
+.hero-body {
+    width: 50%;
+
+}
+
+.hero-text {
+    height: auto;
+    margin: 10% 0% 0% 10%;
+    font-size: xx-large;
+}
+
+.hero-button {
+    height: 5vh;
+    margin: 3% 0% 0% 12%;
+    font-size: large;
+    color: black;
+    background-color: #FCC11E;
+}
+
+.arrow {
+    color: #DD42E4;
+    font-size: xx-large;
+    -webkit-text-stroke: 2px black;
+}
+
+.hero-img {
+    width: 50%;
+    height: auto;
+}

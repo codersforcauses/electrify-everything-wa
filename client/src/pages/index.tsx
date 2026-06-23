@@ -1,8 +1,12 @@
 import { Inter as FontSans } from "next/font/google";
-import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { use, useState } from "react";
 
+import hero_image from "@/assets/hero_img.png";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
+import styles from "@/styles/index.module.css";
 
 import { Button } from "../components/ui/button";
 
@@ -12,6 +16,7 @@ const fontSans = FontSans({
 });
 
 export default function Home() {
+  const router = useRouter();
   const [clicked, setClicked] = useState(false);
   const { data, isLoading } = usePings({
     enabled: clicked,
@@ -24,10 +29,30 @@ export default function Home() {
         fontSans.variable,
       )}
     >
-      <h1 className="text-3xl text-primary">Test title</h1>
-      <Button onClick={() => setClicked(true)}>
-        {isLoading ? "Loading" : "Ping"}
-      </Button>
+      <div className={styles["hero"]}>
+        <div className={styles["hero-body"]}>
+          <div className={styles["hero-text"]}>
+            Electrifying our households to build a safer, more sustainable
+            future.
+          </div>
+          {/*! TODO: Replace this redirect with the actual destination page*/}
+          <Button
+            className={styles["hero-button"]}
+            onClick={() => router.push("/go-electric")}
+          >
+            Go Electric <span className={styles["arrow"]}>▸</span>
+          </Button>
+        </div>
+        <div className={styles["hero-img"]}>
+          <Image
+            src={hero_image.src}
+            alt={
+              "Image of a house with electric alternative to fossil fuel products"
+            }
+          />
+        </div>
+      </div>
+      <Button onClick={() => {}}>{isLoading ? "Loading" : "Ping"}</Button>
       <p>
         Response from server: <span>{data as string}</span>
       </p>
