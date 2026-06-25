@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
 
+import Card, { CardProp } from "@/components/ui/card";
+import CardContainer from "@/components/ui/card_container";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
 import hero_image from "@/public/hero_img.png";
@@ -21,6 +23,12 @@ export default function Home() {
   const { data, isLoading } = usePings({
     enabled: clicked,
   });
+
+  const CardArray: Array<CardProp> = [
+    { image: hero_image, alt: "woah", title: "woah", body: "woah" },
+    { image: hero_image, alt: "woah", title: "woah", body: "woah" },
+    { image: hero_image, alt: "woah", title: "woah", body: "woah" },
+  ];
 
   return (
     <main
@@ -56,6 +64,7 @@ export default function Home() {
       <p>
         Response from server: <span>{data as string}</span>
       </p>
+      <CardContainer cards={CardArray} />
     </main>
   );
 }
