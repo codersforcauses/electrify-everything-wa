@@ -32,6 +32,7 @@
 }
 
 .hero-img {
+    position: relative;
     width: 50%;
     height: auto;
 }

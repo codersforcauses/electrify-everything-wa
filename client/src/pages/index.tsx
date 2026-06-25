@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
 
-import hero_image from "@/assets/hero_img.png";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
+import hero_image from "@/public/hero_img.png";
 import styles from "@/styles/index.module.css";
 
 import { Button } from "../components/ui/button";
@@ -45,7 +45,7 @@ export default function Home() {
         </div>
         <div className={styles["hero-img"]}>
           <Image
-            src={hero_image.src}
+            src={hero_image}
             alt={
               "Image of a house with electric alternative to fossil fuel products"
             }
