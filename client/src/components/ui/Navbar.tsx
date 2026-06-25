@@ -21,7 +21,7 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <nav className="flex items-center justify-between bg-black px-6 py-2 text-white">
+    <nav className="flex items-center justify-between bg-black px-8 py-2 text-white">
       {/* Logo */}
       <Link href="/">
         <Image src="/images/logo.png" alt="EEWA Logo" width={150} height={50} />
@@ -45,7 +45,7 @@ export default function Navbar() {
             {/* Dropdown menu */}
             {openDropdown === nav.label && (
               <div
-                className="absolute right-0 top-full z-50 w-48 bg-black py-2 text-white"
+                className="absolute left-1/2 top-full z-50 w-48 -translate-x-1/2 border-t-2 border-[#FFF4A3] bg-black py-2 text-white"
                 text-center
               >
                 {nav.children.map((child) => (
