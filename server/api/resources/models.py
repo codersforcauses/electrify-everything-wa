@@ -20,8 +20,10 @@ class Resource(models.Model):
     # Used when type = file
     file_url = models.URLField(blank=True, null=True)
     file_name = models.CharField(max_length=255, blank=True, null=True)
+
     def __str__(self):
         return self.name
+
     def clean(self):
         if self.type == ResourceType.PAGE:
             if not self.body:
@@ -40,4 +42,3 @@ class Resource(models.Model):
 
             if errors:
                 raise ValidationError(errors)
-    
