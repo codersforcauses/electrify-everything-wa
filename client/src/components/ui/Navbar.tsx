@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronRight,Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -19,51 +20,113 @@ const navLinks = [
 
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <nav className="flex items-center justify-between bg-black px-8 py-2 text-white">
-      {/* Logo */}
-      <Link href="/">
-        <Image
-          src="/eewa-text-white.png"
-          alt="EEWA Logo"
-          width={180}
-          height={60}
-        />
-      </Link>
+    <>
+      <nav className="relative z-50 flex items-center justify-between bg-black px-8 py-2 text-white">
+        {/* Logo */}
+        <Link href="/">
+          <Image
+            src="/eewa-text-white.png"
+            alt="EEWA Logo"
+            width={160}
+            height={80}
+          />
+        </Link>
 
-      {/* Navigation Links */}
-      <div className="hidden gap-8 pr-8 md:flex">
-        {navLinks.map((nav) => (
-          <div
-            key={nav.label}
-            className="relative"
-            onMouseEnter={() => setOpenDropdown(nav.label)}
-            onMouseLeave={() => setOpenDropdown(null)}
+        {/* Navigation Links */}
+        <div className="hidden gap-8 pr-8 md:flex">
+          {navLinks.map((nav) => (
+            <div
+              key={nav.label}
+              className="relative flex w-max flex-col items-center pb-4 pt-4"
+              onMouseEnter={() => setOpenDropdown(nav.label)}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <div className="absolute left-1/2 top-full h-10 w-48 -translate-x-1/2" />
+
+              {/* Dropdown trigger */}
+              <button className="flex items-center gap-1 hover:text-[#FFF4A3]">
+                {openDropdown === nav.label ? (
+                  <ChevronDown size={16} />
+                ) : (
+                  <ChevronRight size={16} />
+                )}
+                {nav.label}
+              </button>
+
+              {openDropdown === nav.label && (
+                <div className="absolute left-1/2 top-full z-50 mt-2 w-48 -translate-x-1/2 border-t-8 border-[#FDEFBD] bg-black py-2 text-center text-white">
+                  {nav.children.map((child) => (
+                    <Link
+                      key={child}
+                      href={`/${child.replace(/ /g, "-")}`}
+                      className="block px-4 py-3 text-center hover:text-[#FFF4A3]"
+                    >
+                      {child}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile hamburger */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            className="rounded p-1 hover:text-[#FFF4A3]"
           >
-            {/* Dropdown trigger */}
-            <button className="flex items-center gap-1 hover:text-[#FFF4A3]">
-              {openDropdown === nav.label ? "v " : "> "}
-              {nav.label}
-            </button>
+            <Menu />
+          </button>
+        </div>
+      </nav>
 
-            {/* Dropdown menu */}
-            {openDropdown === nav.label && (
-              <div className="absolute left-1/2 top-full z-50 mt-2 w-48 -translate-x-1/2 border-t-2 border-[#FFF4A3] bg-black py-2 text-center text-white">
+      {/* Mobile overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/45 transition-opacity duration-300 md:hidden ${
+          isMobileMenuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+        onClick={toggleMobileMenu}
+      />
+
+      {/* Sliding sidebar */}
+      <aside
+        className={`fixed right-0 top-0 z-50 h-screen w-72 bg-black px-6 pb-8 pt-24 text-white shadow-xl transition-transform duration-300 ease-out md:hidden ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <nav className="flex flex-col gap-6">
+          {navLinks.map((nav) => (
+            <div key={nav.label} className="flex flex-col gap-3">
+              <p className="text-md uppercase tracking-[0.08em] text-[#FFF4A3]">
+                {nav.label}
+              </p>
+              <div className="flex flex-col">
                 {nav.children.map((child) => (
                   <Link
                     key={child}
                     href={`/${child.replace(/ /g, "-")}`}
-                    className="block px-4 py-3 text-center hover:text-[#FFF4A3]"
+                    className="py-2 text-base hover:text-[#FFF4A3]"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {child}
                   </Link>
                 ))}
               </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </nav>
+            </div>
+          ))}
+        </nav>
+      </aside>
+    </>
   );
 }
