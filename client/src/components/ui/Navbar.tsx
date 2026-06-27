@@ -24,11 +24,16 @@ export default function Navbar() {
     <nav className="flex items-center justify-between bg-black px-8 py-2 text-white">
       {/* Logo */}
       <Link href="/">
-        <Image src="/images/logo.png" alt="EEWA Logo" width={150} height={50} />
+        <Image
+          src="/eewa-text-white.png"
+          alt="EEWA Logo"
+          width={180}
+          height={60}
+        />
       </Link>
 
       {/* Navigation Links */}
-      <div className="hidden gap-8 md:flex">
+      <div className="hidden gap-8 pr-8 md:flex">
         {navLinks.map((nav) => (
           <div
             key={nav.label}
@@ -38,16 +43,13 @@ export default function Navbar() {
           >
             {/* Dropdown trigger */}
             <button className="flex items-center gap-1 hover:text-[#FFF4A3]">
-              {openDropdown === nav.label ? "v" : ">"}
+              {openDropdown === nav.label ? "v " : "> "}
               {nav.label}
             </button>
 
             {/* Dropdown menu */}
             {openDropdown === nav.label && (
-              <div
-                className="absolute left-1/2 top-full z-50 w-48 -translate-x-1/2 border-t-2 border-[#FFF4A3] bg-black py-2 text-white"
-                text-center
-              >
+              <div className="absolute left-1/2 top-full z-50 mt-2 w-48 -translate-x-1/2 border-t-2 border-[#FFF4A3] bg-black py-2 text-center text-white">
                 {nav.children.map((child) => (
                   <Link
                     key={child}

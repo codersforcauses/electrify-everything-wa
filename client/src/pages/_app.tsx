@@ -7,7 +7,6 @@ import type { AppProps } from "next/app";
 import Navbar from "@/components/ui/Navbar";
 
 const queryClient = new QueryClient();
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
