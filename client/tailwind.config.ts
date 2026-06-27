@@ -28,6 +28,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        navbarBackground: {
+          DEFAULT: "hsl(var(--navbar-bg))",
+          foreground: "hsl(var(--navbar-bg-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -43,6 +47,10 @@ const config = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+        },
+        darkMuted: {
+          DEFAULT: "hsl(var(--dark-muted))",
+          foreground: "hsl(var(--dark-muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
