@@ -1,4 +1,5 @@
 import { Inter as FontSans } from "next/font/google";
+import Link from "next/link";
 import { useState } from "react";
 
 import { usePings } from "@/hooks/pings";
@@ -25,9 +26,15 @@ export default function Home() {
       )}
     >
       <h1 className="text-3xl text-primary">Test title</h1>
-      <Button onClick={() => setClicked(true)}>
+      {/* <Button onClick={() => setClicked(true)}>
         {isLoading ? "Loading" : "Ping"}
-      </Button>
+      </Button> */}
+      <Link
+        href="/news"
+        className="inline-flex rounded-lg bg-green-600 px-6 py-3 text-white hover:bg-green-700"
+      >
+        Read News
+      </Link>
       <p>
         Response from server: <span>{data as string}</span>
       </p>
