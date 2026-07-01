@@ -33,3 +33,11 @@
 .arrow:hover {
     background: #f3f4f6;
 }
+
+
+@media (max-width: 768px) {
+  .arrow {
+    display: none;
+  }
+}
+
