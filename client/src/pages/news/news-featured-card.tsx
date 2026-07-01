@@ -6,7 +6,7 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-export function FeaturedCard() {
+export function NewsFeaturedCard() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-12">
       <article className="grid overflow-hidden rounded-2xl border bg-white lg:grid-cols-2">
