@@ -18,7 +18,7 @@ const fontSans = FontSans({
 /**
  * Returns a list of upcoming events as CardProps to display
  *
- * @returns List of news events sorted in order
+ * @returns List of events sorted in order
  */
 function getEvents(): Array<CardProp> {
   // Currently a mock function, doesn't do anything other than make some stuff to display
@@ -32,7 +32,7 @@ function getEvents(): Array<CardProp> {
 /**
  * Returns a list of most recent news as CardProps to display
  *
- * @returns List of news events sorted in order
+ * @returns List of news sorted in order
  */
 function getNews(): Array<CardProp> {
   // Currently a mock function, doesn't do anything other than make some stuff to display

@@ -2,6 +2,9 @@ import Image, { StaticImageData } from "next/image";
 
 import styles from "@/styles/components/card.module.css";
 
+/**
+ * Interface that contains fields for a card.
+ */
 export interface CardProp {
   image: StaticImageData;
   alt: string;
@@ -9,6 +12,11 @@ export interface CardProp {
   body: string;
 }
 
+/** A Placeholder Card component for the front page.
+ *
+ * @param param0 CardProp which contain fields for the card
+ * @returns
+ */
 export default function Card({ image, alt, title, body }: CardProp) {
   return (
     <div className={styles["card"]}>

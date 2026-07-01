@@ -4,6 +4,12 @@ import styles from "@/styles/components/card_container.module.css";
 
 import Card, { CardProp } from "./card";
 
+/** Horizontally scrolling container for cards, On widescreen resolutions, scrolls with side buttons
+ * mobile scrolling is done with pointer.
+ *
+ * @param param0 An Array of CardProps which represents the cards to be displayed
+ * @returns
+ */
 export default function CardContainer({ cards }: { cards: Array<CardProp> }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
