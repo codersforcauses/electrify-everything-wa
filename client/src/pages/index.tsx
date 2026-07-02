@@ -106,9 +106,9 @@ export default function Home() {
           {/*! TODO: Replace this redirect with the actual destination page */}
           <Button
             className={styles["hero-button"]}
-            onClick={() => router.push("/go-electric")}
+            onClick={() => router.push("/get-involved")}
           >
-            Go Electric <span className={styles["arrow"]}>▸</span>
+            Get Involved <span className={styles["arrow"]}>▸</span>
           </Button>
         </div>
         <div className={styles["hero-img"]}>
