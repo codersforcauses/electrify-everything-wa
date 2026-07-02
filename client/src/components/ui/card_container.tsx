@@ -19,8 +19,11 @@ export default function CardContainer({
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
+      // Scroll by a generous amount -- CSS scroll-snap (see
+      // card_container.module.css) takes care of landing exactly on the next
+      // card's edge, so this doesn't need to match the card width precisely.
       containerRef.current.scrollBy({
-        left: direction === "right" ? 300 : -300,
+        left: direction === "right" ? 400 : -400,
         behavior: "smooth",
       });
     }
@@ -36,7 +39,7 @@ export default function CardContainer({
           <ContentCard
             key={card_prop.href}
             {...card_prop}
-            className="w-[clamp(18rem,30vw,24rem)] shrink-0"
+            className="w-[clamp(18rem,30vw,24rem)] shrink-0 snap-start"
           />
         ))}
       </div>

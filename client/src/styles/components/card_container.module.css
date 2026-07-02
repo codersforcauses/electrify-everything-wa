@@ -14,6 +14,11 @@
      screen can fit every card and the arrows do nothing. */
   max-width: 78rem;
   scroll-behavior: smooth;
+  /* Snap to the start of each card so a scroll click never leaves a card
+     half-visible -- the browser handles alignment natively instead of us
+     guessing a pixel amount in JS that would drift out of sync with the
+     card's responsive width. */
+  scroll-snap-type: x mandatory;
   /* hide scrollbar */
   scrollbar-width: none;
 }
