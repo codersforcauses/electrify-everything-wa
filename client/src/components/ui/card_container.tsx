@@ -33,7 +33,11 @@ export default function CardContainer({
       </button>
       <div className={styles["card-container"]} ref={containerRef}>
         {cards.map((card_prop) => (
-          <ContentCard key={card_prop.href} {...card_prop} />
+          <ContentCard
+            key={card_prop.href}
+            {...card_prop}
+            className="w-[clamp(18rem,30vw,24rem)] shrink-0"
+          />
         ))}
       </div>
       <button className={styles["arrow"]} onClick={() => scroll("right")}>

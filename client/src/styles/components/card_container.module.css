@@ -9,6 +9,10 @@
   overflow-x: auto;
   gap: 0rem;
   padding: 1rem;
+  /* Cap the row so roughly 3 full-width cards show at once, with a peek of the
+     next one hinting there's more to scroll to -- without this, a wide enough
+     screen can fit every card and the arrows do nothing. */
+  max-width: 78rem;
   scroll-behavior: smooth;
   /* hide scrollbar */
   scrollbar-width: none;
