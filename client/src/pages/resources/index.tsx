@@ -1,3 +1,26 @@
+import { getResources } from "@/hooks/apiService";
+
+/*
+interface Resource {
+  name: string;
+}*/
+
+function ResourcesCards() {
+  const { data, isLoading } = getResources();
+  console.log("maybe loaded", data);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  console.log("loaded", data);
+  return (
+    <ul>
+      {data.map((item, index) => (
+        <li key={index}>{item.name}</li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Resources() {
   return (
     <main className="flex flex-col gap-8 px-16 pt-8">
@@ -6,7 +29,8 @@ export default function Resources() {
         <h1 className="text-2xl font-bold">Resources</h1>
         <input type="text" placeholder="Search..." />
       </div>
-
+      {/* Cards */}
+      {ResourcesCards()}
       {/* Placeholder Cards */}
       <div className="flex flex-col gap-6">
         <div className="flex gap-2 shadow-md">
