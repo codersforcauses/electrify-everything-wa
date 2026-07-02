@@ -2,7 +2,7 @@ import { Inter as FontSans } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { ContentCardProps } from "@/components/content-card";
+import { ContentCard, ContentCardProps } from "@/components/content-card";
 import CardContainer from "@/components/ui/card_container";
 import { cn } from "@/lib/utils";
 import hero_image from "@/public/hero_img.png";
@@ -43,52 +43,44 @@ function getEvents(): Array<ContentCardProps> {
 }
 
 /**
- * Returns a list of most recent news as ContentCardProps to display
+ * Returns the three quick-link tiles (WA Savings, News, Resources) shown
+ * below the hero, linking out to their respective pages.
  *
- * @returns List of news sorted in order
+ * @returns List of quick-link tiles
  */
-function getNews(): Array<ContentCardProps> {
-  // Currently a mock function, doesn't do anything other than make some stuff to display
-  // TODO: replace with a real fetch against the News endpoint once #4 is closed
-  const mockNews = [
+function getQuickLinks(): Array<ContentCardProps> {
+  return [
     {
-      title: "WA Rebates Expanded for Home Batteries",
-      author: "EEWA Team",
-      dateTime: "28 Jun 2026",
+      imageSrc: hero_image.src,
+      imageAlt: "WA Savings",
+      title: "WA Savings",
+      description:
+        "See how much you could save by switching to electric appliances and solar in WA.",
+      href: "/wa-savings",
     },
     {
-      title: "New Solar Uptake Hits Record High",
-      author: "EEWA Team",
-      dateTime: "24 Jun 2026",
+      imageSrc: hero_image.src,
+      imageAlt: "News",
+      title: "News",
+      description:
+        "Read the latest updates from Electrify Everything WA and our community.",
+      href: "/news",
     },
     {
-      title: "Get Involved: Volunteer for Our Next Event",
-      author: "EEWA Team",
-      dateTime: "20 Jun 2026",
-    },
-    {
-      title: "Case Study: A Fully Electrified Perth Home",
-      author: "EEWA Team",
-      dateTime: "15 Jun 2026",
+      imageSrc: hero_image.src,
+      imageAlt: "Resources",
+      title: "Resources",
+      description:
+        "Explore guides and resources to help you electrify your home.",
+      href: "/resources",
     },
   ];
-
-  return mockNews.map((news, index) => ({
-    imageSrc: hero_image.src,
-    imageAlt: news.title,
-    title: news.title,
-    description:
-      "Read the latest updates from Electrify Everything WA and our community.",
-    author: news.author,
-    dateTime: news.dateTime,
-    href: `/news/${index + 1}`,
-  }));
 }
 
 export default function Home() {
   const router = useRouter();
   const events = getEvents();
-  const news = getNews();
+  const quickLinks = getQuickLinks();
 
   return (
     <main
@@ -103,7 +95,6 @@ export default function Home() {
             Electrifying our households to build a safer, more sustainable
             future.
           </div>
-          {/*! TODO: Replace this redirect with the actual destination page */}
           <Button
             className={styles["hero-button"]}
             onClick={() => router.push("/get-involved")}
@@ -121,9 +112,10 @@ export default function Home() {
         </div>
       </div>
       <div className={styles["news-and-events"]}>
-        <div>
-          <h1 className="text-5xl font-bold">Recent News</h1>
-          <CardContainer cards={news} />
+        <div className={styles["quick-links"]}>
+          {quickLinks.map((link) => (
+            <ContentCard key={link.href} {...link} />
+          ))}
         </div>
         <div>
           <h1 className="text-5xl font-bold">Upcoming Events</h1>

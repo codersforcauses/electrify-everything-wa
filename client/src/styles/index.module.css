@@ -42,6 +42,12 @@
   width: 78vw;
 }
 
+.quick-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
 @media (max-width: 768px) {
   .hero {
     width: 92vw;
