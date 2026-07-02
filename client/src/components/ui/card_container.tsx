@@ -2,15 +2,19 @@ import { useRef } from "react";
 
 import styles from "@/styles/components/card_container.module.css";
 
-import Card, { CardProp } from "./card";
+import { ContentCard, ContentCardProps } from "../content-card";
 
 /** Horizontally scrolling container for cards, On widescreen resolutions, scrolls with side buttons
  * mobile scrolling is done with pointer.
  *
- * @param param0 An Array of CardProps which represents the cards to be displayed
+ * @param param0 An Array of ContentCardProps which represents the cards to be displayed
  * @returns
  */
-export default function CardContainer({ cards }: { cards: Array<CardProp> }) {
+export default function CardContainer({
+  cards,
+}: {
+  cards: Array<ContentCardProps>;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -29,12 +33,7 @@ export default function CardContainer({ cards }: { cards: Array<CardProp> }) {
       </button>
       <div className={styles["card-container"]} ref={containerRef}>
         {cards.map((card_prop) => (
-          <Card
-            image={card_prop.image}
-            alt={card_prop.alt}
-            title={card_prop.title}
-            body={card_prop.body}
-          />
+          <ContentCard key={card_prop.href} {...card_prop} />
         ))}
       </div>
       <button className={styles["arrow"]} onClick={() => scroll("right")}>
