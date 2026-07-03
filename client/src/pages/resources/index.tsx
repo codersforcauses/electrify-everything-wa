@@ -3,6 +3,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Search,
 } from "lucide-react";
 
 import { getResources } from "@/hooks/apiService";
@@ -53,7 +54,16 @@ export default function Resources() {
       {/* Title + Search */}
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Resources</h1>
-        <input type="text" placeholder="Search..." />
+
+        {/* Search Box */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4"
+          />
+        </div>
       </div>
       {/* Cards */}
       <div className="flex flex-col gap-6">
