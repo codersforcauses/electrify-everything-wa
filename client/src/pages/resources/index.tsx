@@ -6,7 +6,7 @@ import {
   Search,
 } from "lucide-react";
 
-import { getResources } from "@/hooks/apiService";
+import { getResources, Resource } from "@/hooks/apiService";
 
 type Direction = "double_left" | "left" | "double_right" | "right";
 
@@ -26,26 +26,28 @@ function ArrowButton({ direction }: { direction: Direction }) {
   return <button className={buttonClass}> {icons[direction]} </button>;
 }
 
-function ResourcesCards() {
-  const { data, isLoading } = getResources();
-
-  if (isLoading || data === undefined) return <p>Loading...</p>;
-
-  return data.map((item, index) => (
-    <div
-      key={index}
-      className="flex gap-2 overflow-hidden rounded-lg shadow-md"
-    >
+function ResourceCard({ item }: { item: Resource }) {
+  return (
+    <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
       <div className="h-64 w-72 bg-gray-300"></div>
 
       <div className="flex flex-col justify-center gap-2 px-12">
+        {/* TODO: author/date not in resource model yet, hardcoded for now*/}
         <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
         <h2 className="text-xl font-bold">{item.name}</h2>
         <p>{item.summary}</p>
         <p className="text-[#C81FD1]">View {"->"}</p>
       </div>
     </div>
-  ));
+  );
+}
+
+function ResourcesCards() {
+  const { data, isLoading } = getResources();
+
+  if (isLoading || data === undefined) return <p>Loading...</p>;
+
+  return data.map((item) => <ResourceCard key={item.id} item={item} />);
 }
 
 export default function Resources() {
