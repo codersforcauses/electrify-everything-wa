@@ -5,6 +5,8 @@ import {
   ChevronsRight,
 } from "lucide-react";
 
+import { getResources } from "@/hooks/apiService";
+
 type Direction = "double_left" | "left" | "double_right" | "right";
 
 function ArrowButton({ direction }: { direction: Direction }) {
@@ -23,6 +25,25 @@ function ArrowButton({ direction }: { direction: Direction }) {
   return <button className={buttonClass}> {icons[direction]} </button>;
 }
 
+function ResourcesCards() {
+  const { data, isLoading } = getResources();
+
+  if (isLoading || data === undefined) return <p>Loading...</p>;
+
+  return data.map((item, index) => (
+    <div key={index} className="flex gap-2 shadow-md">
+      <div className="h-64 w-72 bg-gray-300"></div>
+
+      <div className="flex flex-col justify-center gap-2 px-12">
+        <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
+        <h2 className="text-xl font-bold">{item.name}</h2>
+        <p>{item.summary}</p>
+        <p className="text-[#C81FD1]">View {"->"}</p>
+      </div>
+    </div>
+  ));
+}
+
 export default function Resources() {
   return (
     <main className="flex flex-col gap-8 px-16 pt-8">
@@ -31,8 +52,9 @@ export default function Resources() {
         <h1 className="text-2xl font-bold">Resources</h1>
         <input type="text" placeholder="Search..." />
       </div>
-
-      {/* Placeholder Cards */}
+      {/* Cards */}
+      <ResourcesCards />
+      {/* Placeholder Card */}
       <div className="flex flex-col gap-6">
         <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
           <div className="h-64 w-72 bg-gray-300"></div>
