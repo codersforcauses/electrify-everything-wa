@@ -1,4 +1,4 @@
-import { Calendar,Filter } from "lucide-react";
+import { Calendar, Filter } from "lucide-react";
 import { useState } from "react";
 
 import { EventTypeFilter, useEvents } from "@/hooks/useEvents";
@@ -28,6 +28,21 @@ export default function EventsSection() {
 
 function EventsGridSkeleton({ count = 3 }: { count?: number }) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          className="animate-pulse overflow-hidden rounded-xl border border-gray-100"
+        >
+          <div className="h-44 w-full bg-gray-200" />
+          <div className="space-y-2 px-4 py-4">
+            <div className="h-3 w-2/3 rounded bg-gray-200" />
+            <div className="h-4 w-full rounded bg-gray-200" />
+            <div className="h-3 w-full rounded bg-gray-200" />
+            <div className="h-3 w-3/4 rounded bg-gray-200" />
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
