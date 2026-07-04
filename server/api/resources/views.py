@@ -11,7 +11,11 @@ from .serializer import ResourceSerializer
 @api_view(["GET", "POST"])
 def resource_list(request):
     if request.method == "GET":
-        resources = Resource.objects.all()
+        slug = request.query_params.get("slug", None)
+        if slug:
+            resources = Resource.objects.filter(slug=slug)
+        else:
+            resources = Resource.objects.all()
         serializer = ResourceSerializer(resources, many=True)
         return Response(serializer.data)
     serializer = ResourceSerializer(data=request.data)
