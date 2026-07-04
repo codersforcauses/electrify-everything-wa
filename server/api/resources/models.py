@@ -14,14 +14,15 @@ class Resource(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date_made = models.DateField(default="1000-10-10")
     author = models.CharField(blank=True, default="", max_length=50)
+    image = models.ImageField(null=True, upload_to="Resource", height_field=None, width_field=None, max_length=None)
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    summary = models.TextField(blank=True, null=True)
+    summary = models.TextField(default="", blank=True)
     type = models.CharField(max_length=10, choices=ResourceType.choices)
-    body = models.TextField(blank=True, null=True)
+    body = models.TextField(default="", blank=True)
     # Used when type = file
-    file_url = models.URLField(blank=True, null=True)
-    file_name = models.CharField(max_length=255, blank=True, null=True)
+    file_url = models.URLField(default="", blank=True)
+    file_name = models.CharField(default="", max_length=255, blank=True)
 
     def __str__(self):
         return self.name
