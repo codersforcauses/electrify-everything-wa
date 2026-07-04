@@ -12,6 +12,7 @@ export interface Resource {
   file_url: string | null;
   file_name: string | null;
 }
+
 export const getResources = (
   args?: Omit<UseQueryOptions<Resource[]>, "queryKey" | "queryFn">,
 ) => {
@@ -25,3 +26,13 @@ export const getResources = (
   });
   // TODO: Error handling
 };
+
+export function getResourceFromSlug(slug: string) {
+  return useQuery<Resource>({
+    queryKey: ["resources", slug],
+    queryFn: () =>
+      api.get("resources/collection/?slug=" + slug).then((res) => {
+        return res.data[0] as Resource;
+      }),
+  });
+}
