@@ -60,19 +60,23 @@ export default function Navbar() {
                 {nav.label}
               </button>
 
-              {openDropdown === nav.label && (
-                <div className="absolute left-1/2 top-full z-50 mt-2 w-48 -translate-x-1/2 border-t-8 border-[#FDEFBD] bg-black py-2 text-center text-white">
-                  {nav.children.map((child) => (
-                    <Link
-                      key={child}
-                      href={`/${child.replace(/ /g, "-")}`}
-                      className="block px-4 py-3 text-center hover:text-[#FFF4A3]"
-                    >
-                      {child}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div
+                className={`absolute left-1/2 top-full z-50 mt-2 w-48 -translate-x-1/2 border-t-8 border-[#FDEFBD] bg-black py-2 text-center text-white transition-all duration-200 ease-out ${
+                  openDropdown === nav.label
+                    ? "pointer-events-auto translate-y-0 opacity-100"
+                    : "pointer-events-none -translate-y-2 opacity-0"
+                }`}
+              >
+                {nav.children.map((child) => (
+                  <Link
+                    key={child}
+                    href={`/${child.replace(/ /g, "-")}`}
+                    className="block px-4 py-3 text-center hover:text-[#FFF4A3]"
+                  >
+                    {child}
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>
