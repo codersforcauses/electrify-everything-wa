@@ -28,8 +28,8 @@
 }
 
 .arrow {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
   border-radius: 999px;
   width: 2.5rem;
   height: 2.5rem;
@@ -40,7 +40,7 @@
 }
 
 .arrow:hover {
-  background: #f3f4f6;
+  background: hsl(var(--accent));
 }
 
 @media (max-width: 768px) {

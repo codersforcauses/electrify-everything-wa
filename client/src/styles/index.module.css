@@ -21,14 +21,14 @@
   height: 5vh;
   margin: 5% 0% 5% 12%;
   font-size: large;
-  color: black;
+  color: hsl(var(--foreground));
   background-color: #fcc11e;
 }
 
 .arrow {
-  color: #dd42e4;
+  color: hsl(var(--destructive));;
   font-size: 1rem;
-  -webkit-text-stroke: 0.1rem black;
+  -webkit-text-stroke: 0.1rem hsl(var(--foreground));
   padding: 0 0 0 0.5rem;
 }
 
