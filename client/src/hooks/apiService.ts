@@ -5,6 +5,8 @@ import api from "@/lib/api";
 export interface Resource {
   id: string;
   name: string;
+  date_made: string;
+  author: string;
   slug: string;
   summary: string;
   type: "page" | "file";

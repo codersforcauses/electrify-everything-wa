@@ -35,7 +35,9 @@ function ResourcesCards() {
       <div className="h-64 w-72 bg-gray-300"></div>
 
       <div className="flex flex-col justify-center gap-2 px-12">
-        <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
+        <p className="text-[#C81FD1]">
+          {item.author} • {item.date_made}
+        </p>
         <h2 className="text-xl font-bold">{item.name}</h2>
         <p>{item.summary}</p>
         <p className="text-[#C81FD1]">View {"->"}</p>

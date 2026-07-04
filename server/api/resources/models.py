@@ -12,6 +12,8 @@ class ResourceType(models.TextChoices):
 
 class Resource(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date_made = models.DateField(default="1000-10-10")
+    author = models.CharField(blank=True, default="", max_length=50)
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
     summary = models.TextField(blank=True, null=True)
