@@ -2,7 +2,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface NewsCardProps {
+export interface NewsCardProps {
   article: {
     id: number;
     title: string;
@@ -31,11 +31,11 @@ export function NewsCard({ article }: NewsCardProps) {
           <span>{article.date}</span>
         </div>
 
-        <h2 className="line-clamp-3 text-3xl font-semibold leading-tight">
+        <h2 className="line-clamp-3 text-2xl font-semibold leading-tight">
           {article.title}
         </h2>
 
-        <p className="mt-5 line-clamp-3 text-lg text-gray-600">
+        <p className="mt-5 line-clamp-2 text-lg text-gray-600">
           {article.summary}
         </p>
 
