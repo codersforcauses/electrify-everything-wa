@@ -112,10 +112,8 @@ export default function Home() {
         </div>
       </div>
       <div className={styles["news-and-events"]}>
-        <div className={styles["quick-links"]}>
-          {quickLinks.map((link) => (
-            <ContentCard key={link.href} {...link} />
-          ))}
+        <div>
+          <CardContainer cards={quickLinks} />
         </div>
         <div>
           <h1 className="text-5xl font-bold">Upcoming Events</h1>

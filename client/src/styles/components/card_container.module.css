@@ -7,12 +7,12 @@
 .card-container {
   display: flex;
   overflow-x: auto;
-  gap: 0rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 0rem;
   /* Cap the row so roughly 3 full-width cards show at once, with a peek of the
      next one hinting there's more to scroll to -- without this, a wide enough
      screen can fit every card and the arrows do nothing. */
-  max-width: 78rem;
+  max-width: 74rem;
   scroll-behavior: smooth;
   /* Snap to the start of each card so a scroll click never leaves a card
      half-visible -- the browser handles alignment natively instead of us
@@ -44,7 +44,4 @@
 }
 
 @media (max-width: 768px) {
-  .arrow {
-    display: none;
-  }
 }
