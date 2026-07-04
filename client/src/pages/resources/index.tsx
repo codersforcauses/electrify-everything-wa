@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
@@ -36,7 +37,9 @@ function ResourceCard({ item }: { item: Resource }) {
         <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
         <h2 className="text-xl font-bold">{item.name}</h2>
         <p>{item.summary}</p>
-        <p className="text-[#C81FD1]">View {"->"}</p>
+        <p className="flex items-center gap-1 text-[#C81FD1]">
+          View <ArrowRight className="h-4 w-4" />
+        </p>
       </div>
     </div>
   );
