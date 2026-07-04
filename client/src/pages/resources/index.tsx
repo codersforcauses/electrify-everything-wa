@@ -1,11 +1,13 @@
 import {
+  ArrowRight,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Search,
 } from "lucide-react";
 
-import { getResources } from "@/hooks/apiService";
+import { getResources, Resource } from "@/hooks/apiService";
 
 type Direction = "double_left" | "left" | "double_right" | "right";
 
@@ -25,23 +27,31 @@ function ArrowButton({ direction }: { direction: Direction }) {
   return <button className={buttonClass}> {icons[direction]} </button>;
 }
 
+function ResourceCard({ item }: { item: Resource }) {
+  return (
+    <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
+      <div className="h-64 w-72 bg-gray-300"></div>
+
+      <div className="flex flex-col justify-center gap-2 px-12">
+        <p className="text-[#C81FD1]">
+          {item.author} • {item.date_made}
+        </p>
+        <h2 className="text-xl font-bold">{item.name}</h2>
+        <p>{item.summary}</p>
+        <p className="flex items-center gap-1 text-[#C81FD1]">
+          View <ArrowRight className="h-4 w-4" />
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function ResourcesCards() {
   const { data, isLoading } = getResources();
 
   if (isLoading || data === undefined) return <p>Loading...</p>;
 
-  return data.map((item, index) => (
-    <div key={index} className="flex gap-2 shadow-md">
-      <div className="h-64 w-72 bg-gray-300"></div>
-
-      <div className="flex flex-col justify-center gap-2 px-12">
-        <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
-        <h2 className="text-xl font-bold">{item.name}</h2>
-        <p>{item.summary}</p>
-        <p className="text-[#C81FD1]">View {"->"}</p>
-      </div>
-    </div>
-  ));
+  return data.map((item) => <ResourceCard key={item.id} item={item} />);
 }
 
 export default function Resources() {
@@ -50,26 +60,20 @@ export default function Resources() {
       {/* Title + Search */}
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Resources</h1>
-        <input type="text" placeholder="Search..." />
+
+        {/* Search Box */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4"
+          />
+        </div>
       </div>
       {/* Cards */}
-      <ResourcesCards />
-      {/* Placeholder Card */}
       <div className="flex flex-col gap-6">
-        <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
-          <div className="h-64 w-72 bg-gray-300"></div>
-
-          <div className="flex flex-col justify-center gap-2 px-12">
-            <p className="text-[#C81FD1]">Lebron James • 30 Jun 2026</p>
-            <h2 className="text-xl font-bold">EEWA x CFC Website Design</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse ac mi quis augue accumsan vestibulum eleifend sit amet
-              erat. Phasellus pharetra lobortis dictum. 
-            </p>
-            <p className="text-[#C81FD1]">View {"->"}</p>
-          </div>
-        </div>
+        <ResourcesCards />
       </div>
 
       {/* Page Navigation */}
