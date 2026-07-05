@@ -7,5 +7,5 @@ router = routers.DefaultRouter()
 router.register(r"contact", views.ContactView, "contact")
 
 urlpatterns = [
-    path("contact/", include(router.urls)),
+    path("", include(router.urls)),
 ]
