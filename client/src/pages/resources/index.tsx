@@ -5,6 +5,7 @@ import {
   ChevronsRight,
   Search,
 } from "lucide-react";
+import { useState } from "react";
 
 import { ContentCard } from "@/components/content-card";
 import { getResources, Resource } from "@/hooks/apiService";
@@ -47,15 +48,29 @@ function ResourceCard({ item }: { item: Resource }) {
   );
 }
 
-function ResourcesCards() {
+function ResourcesCards({ searchTerm }: { searchTerm: string }) {
   const { data, isLoading } = getResources();
 
   if (isLoading || data === undefined) return <p>Loading...</p>;
 
-  return data.map((item) => <ResourceCard key={item.id} item={item} />);
+  const query = searchTerm.trim().toLowerCase();
+
+  const filteredResources = data.filter((item) => {
+    return item.name.toLowerCase().includes(query);
+  });
+
+  if (filteredResources.length === 0) {
+    return <p>No resources match your search.</p>;
+  }
+
+  return filteredResources.map((item) => (
+    <ResourceCard key={item.id} item={item} />
+  ));
 }
 
 export default function Resources() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <main className="flex flex-col gap-8 px-16 pt-8">
       {/* Title + Search */}
@@ -68,13 +83,15 @@ export default function Resources() {
           <input
             type="text"
             placeholder="Search..."
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
             className="rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4"
           />
         </div>
       </div>
       {/* Cards */}
       <div className="mx-auto grid w-fit justify-items-center gap-x-4 gap-y-6 min-[800px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <ResourcesCards />
+        <ResourcesCards searchTerm={searchTerm} />
       </div>
 
       {/* Page Navigation */}
