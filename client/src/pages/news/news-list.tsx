@@ -1,3 +1,7 @@
+import { Inter as FontSans } from "next/font/google";
+
+import { ContentCard } from "@/components/content-card";
+
 import { NewsCard } from "./news-card";
 
 const news = [
@@ -39,12 +43,28 @@ const news = [
   },
 ];
 
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 export function NewsList() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-12">
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         {news.map((article) => (
-          <NewsCard key={article.id} article={article} />
+          <ContentCard
+            className={`font-sans ${fontSans.variable}`}
+            key={article.id}
+            imageSrc="/cover-test.jpg"
+            imageAlt="Solar panels on a house"
+            title={article.title}
+            description={article.summary}
+            href={`/news/${article.id}`}
+            buttonLabel="Read full article"
+            author={article.author}
+            dateTime={article.date}
+          />
         ))}
       </div>
     </section>
