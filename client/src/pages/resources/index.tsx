@@ -44,6 +44,7 @@ function ResourceCard({ item }: { item: Resource }) {
       imageSrc=""
       imageAlt=""
       buttonLabel="View"
+      className="min-h-[28rem]"
     />
   );
 }
