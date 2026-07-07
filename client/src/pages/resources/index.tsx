@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
@@ -7,6 +6,7 @@ import {
   Search,
 } from "lucide-react";
 
+import { ContentCard } from "@/components/content-card";
 import { getResources, Resource } from "@/hooks/apiService";
 
 type Direction = "double_left" | "left" | "double_right" | "right";
@@ -28,21 +28,22 @@ function ArrowButton({ direction }: { direction: Direction }) {
 }
 
 function ResourceCard({ item }: { item: Resource }) {
-  return (
-    <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
-      <div className="h-64 w-72 bg-gray-300"></div>
+  const href =
+    item.type === "file" && item.file_url
+      ? item.file_url
+      : `/resources/${item.slug}`;
 
-      <div className="flex flex-col justify-center gap-2 px-12">
-        <p className="text-[#C81FD1]">
-          {item.author} • {item.date_made}
-        </p>
-        <h2 className="text-xl font-bold">{item.name}</h2>
-        <p>{item.summary}</p>
-        <p className="flex items-center gap-1 text-[#C81FD1]">
-          View <ArrowRight className="h-4 w-4" />
-        </p>
-      </div>
-    </div>
+  return (
+    <ContentCard
+      title={item.name}
+      description={item.summary}
+      author={item.author}
+      dateTime={item.date_made}
+      href={href}
+      imageSrc=""
+      imageAlt=""
+      buttonLabel="View"
+    />
   );
 }
 
@@ -72,7 +73,7 @@ export default function Resources() {
         </div>
       </div>
       {/* Cards */}
-      <div className="flex flex-col gap-6">
+      <div className="mx-auto grid w-fit justify-items-center gap-x-4 gap-y-6 min-[800px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <ResourcesCards />
       </div>
 
