@@ -34,6 +34,7 @@ function ResourceCard({ item }: { item: Resource }) {
       ? item.file_url
       : `/resources/${item.slug}`;
 
+  // TODO: Use the horizontal card component for the mobile layout once it is available.
   return (
     <ContentCard
       title={item.name}
@@ -44,7 +45,7 @@ function ResourceCard({ item }: { item: Resource }) {
       imageSrc=""
       imageAlt=""
       buttonLabel="View"
-      className="min-h-[28rem]"
+      className="min-h-[28rem] w-full max-w-[32rem] max-w-none [&_h3]:text-xl [&_p]:text-sm"
     />
   );
 }
@@ -73,37 +74,39 @@ export default function Resources() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <main className="flex flex-col gap-8 px-16 pt-8">
-      {/* Title + Search */}
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">Resources</h1>
+    <main>
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pt-6 sm:px-8 lg:px-16 lg:pt-8">
+        {/* Title + Search */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl font-bold">Resources</h1>
 
-        {/* Search Box */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            className="rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4"
-          />
+          {/* Search Box */}
+          <div className="relative w-full md:w-auto">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              className="w-full rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4 md:w-72"
+            />
+          </div>
         </div>
-      </div>
-      {/* Cards */}
-      <div className="mx-auto grid w-fit justify-items-center gap-x-4 gap-y-6 min-[800px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <ResourcesCards searchTerm={searchTerm} />
-      </div>
+        {/* Cards */}
+        <div className="md grid w-full justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ResourcesCards searchTerm={searchTerm} />
+        </div>
 
-      {/* Page Navigation */}
-      <div className="flex justify-center gap-2">
-        <ArrowButton direction="double_left" />
-        <ArrowButton direction="left" />
-        <button className="h-8 w-8 rounded-lg bg-[#C000CC] text-[13px] font-semibold leading-[18px] text-white">
-          1
-        </button>
-        <ArrowButton direction="right" />
-        <ArrowButton direction="double_right" />
+        {/* Page Navigation */}
+        <div className="flex justify-center gap-2">
+          <ArrowButton direction="double_left" />
+          <ArrowButton direction="left" />
+          <button className="h-8 w-8 rounded-lg bg-[#C000CC] text-[13px] font-semibold leading-[18px] text-white">
+            1
+          </button>
+          <ArrowButton direction="right" />
+          <ArrowButton direction="double_right" />
+        </div>
       </div>
     </main>
   );
