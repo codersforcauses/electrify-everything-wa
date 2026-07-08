@@ -29,10 +29,7 @@ function ArrowButton({ direction }: { direction: Direction }) {
 }
 
 function ResourceCard({ item }: { item: Resource }) {
-  const href =
-    item.type === "file" && item.file_url
-      ? item.file_url
-      : `/resources/${item.slug}`;
+  const href = `/resources/${item.slug}`;
 
   // TODO: Use the horizontal card component for the mobile layout once it is available.
   return (

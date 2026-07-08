@@ -4,25 +4,18 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-//later: make interface have promise, and also implement async function to get the resource based on the url
+import { fetchResourceFromSlug, Resource } from "@/hooks/apiService";
 
 //implement getPDFbySlug async function that will take a slug and return pdf url
 
 interface Props {
-  pdfUrl: string;
+  resource: Resource[] | null; //resource defined in api service
 }
 
 const DEFAULT_PDF =
   "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf";
 
-async function getPDFBySlug(slug: string): Promise<string | undefined> {
-  const pdfUrls: Record<string, string> = {
-    Slug1: "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
-  };
-
-  return pdfUrls[slug];
-}
-
+//used in pages router to fetch data for interface Props at request time
 export const getServerSideProps: GetServerSideProps<Props> = async ({
   params,
 }) => {
@@ -31,20 +24,58 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   if (!slug) {
     return {
       props: {
-        pdfUrl: DEFAULT_PDF,
+        resource: null,
       },
     };
   }
-
-  const pdfUrl = await getPDFBySlug(slug);
-  return {
-    props: {
-      pdfUrl: pdfUrl ?? DEFAULT_PDF,
-    },
-  };
+  try {
+    const resource = await fetchResourceFromSlug(slug);
+    return {
+      props: {
+        resource,
+      }, //returns props object that page component will recieve
+    };
+  } catch (error) {
+    return {
+      props: {
+        resource: null,
+      },
+    };
+  }
 };
 
-export default function PDFViewer({ pdfUrl }: Props) {
+function resourceDisplay(resource: Resource[] | null) {
+  JSON.stringify(resource);
+  if (!resource) {
+    return (
+      <embed
+        src={DEFAULT_PDF}
+        type="application/pdf"
+        className="h-[85vh] w-full"
+      />
+    );
+  }
+  if (resource[0].type == "file" && resource[0].file_url != null) {
+    console.log("it is a file");
+    return (
+      <div>
+        <iframe
+          src={resource[0].file_url}
+          title="PDF Viewer"
+          className="h-[85vh] w-full rounded-lg"
+        />
+      </div>
+    );
+  }
+  if (resource[0].type == "page") {
+    console.log("it is a page");
+    return <article className="prose">{resource[0].body}</article>;
+  }
+  console.log(resource);
+  return <div>Unsupported resource type</div>;
+}
+
+export default function PDFViewer({ resource }: Props) {
   return (
     <main className="min-h-screen bg-gray-50 pb-8 pt-8">
       <div className="mx-auto max-w-7xl px-6">
@@ -56,11 +87,7 @@ export default function PDFViewer({ pdfUrl }: Props) {
         </Link>
 
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-          <embed
-            src={pdfUrl}
-            type="application/pdf"
-            className="h-[85vh] w-full"
-          />
+          {resourceDisplay(resource)}
         </div>
       </div>
     </main>
