@@ -45,7 +45,7 @@ function ResourceCard({ item }: { item: Resource }) {
       imageSrc=""
       imageAlt=""
       buttonLabel="View"
-      className="min-h-[28rem] w-full max-w-[32rem] max-w-none [&_h3]:text-xl [&_p]:text-sm"
+      className="min-h-[28rem] w-full max-w-none [&_h3]:text-xl [&_p]:text-sm"
     />
   );
 }
@@ -75,7 +75,7 @@ export default function Resources() {
 
   return (
     <main>
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pt-6 sm:px-8 lg:px-16 lg:pt-8">
+      <div className="mx-auto flex w-full max-w-[90rem] flex-col gap-8 px-4 pt-6 sm:px-8 lg:px-16 lg:pt-8">
         {/* Title + Search */}
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h1 className="text-2xl font-bold">Resources</h1>
