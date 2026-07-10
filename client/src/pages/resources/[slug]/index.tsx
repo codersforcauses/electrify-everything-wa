@@ -2,7 +2,6 @@
 
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 import { fetchResourceFromSlug, Resource } from "@/hooks/apiService";
 
@@ -23,13 +22,18 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
   if (!slug) {
     return {
-      props: {
-        resource: null,
-      },
+      notFound: true,
     };
   }
   try {
     const resource = await fetchResourceFromSlug(slug);
+
+    if (resource.length === 0) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       props: {
         resource,
