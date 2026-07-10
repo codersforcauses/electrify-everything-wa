@@ -4,6 +4,7 @@ import api from "@/lib/api";
 
 export interface Resource {
   id: string;
+  image: string | null;
   name: string;
   date_made: string;
   author: string;

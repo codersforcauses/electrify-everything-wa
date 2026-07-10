@@ -16,9 +16,16 @@ def resource_list(request):
             resources = Resource.objects.filter(slug=slug)
         else:
             resources = Resource.objects.all()
-        serializer = ResourceSerializer(resources, many=True)
+        serializer = ResourceSerializer(
+            resources,
+            many=True,
+            context={"request": request},
+        )
         return Response(serializer.data)
-    serializer = ResourceSerializer(data=request.data)
+    serializer = ResourceSerializer(
+        data=request.data,
+        context={"request": request},
+    )
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
