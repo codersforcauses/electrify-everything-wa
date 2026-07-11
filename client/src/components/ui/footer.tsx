@@ -4,7 +4,7 @@ import { ChevronsUp } from "lucide-react";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import * as React from "react";
-import { BsFacebook,BsInstagram, BsLinkedin } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 import { Button } from "@/components/ui/button";
 
