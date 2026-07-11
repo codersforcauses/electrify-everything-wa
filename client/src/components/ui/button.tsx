@@ -18,6 +18,15 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Tab variants
+        primary:
+          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-300 bg-amber-300 text-gray-900",
+        secondary:
+          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-200 bg-white text-gray-700 hover:border-amber-300 hover:bg-amber-50",
+        primaryFilter:
+          "rounded-full border border-amber-200 bg-white text-gray-400 hover:border-amber-300 hover:bg-amber-50",
+        secondaryFilter:
+          "h-10 w-10 px-1 py-1 rounded-full border border-amber-300 bg-amber-300 text-gray-900",
       },
       size: {
         default: "h-10 px-4 py-2",
