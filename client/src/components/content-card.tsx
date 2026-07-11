@@ -1,4 +1,4 @@
-import { ArrowRight, ImageOff } from "lucide-react";
+import { ArrowRight, Calendar, ImageOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,12 +27,14 @@ export function ContentCard({
   author,
   dateTime,
 }: ContentCardProps) {
-  const hasAuthorOrDateTime = Boolean(author || dateTime);
+  const hasAuthor = Boolean(author);
+  const hasDateTime = Boolean(dateTime);
 
   return (
     <article
       className={cn(
         "group flex aspect-[10/13] h-full w-full max-w-[clamp(18rem,30vw,24rem)] flex-col overflow-hidden rounded-[var(--radius)] border border-border/60 bg-[linear-gradient(0deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0.05)_100%),linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_100%)] text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
+        hasDateTime ? "aspect-[10/13]" : "aspect-[10/11]",
         className,
       )}
     >
@@ -58,18 +60,13 @@ export function ContentCard({
       </div>
 
       <div className="flex flex-1 flex-col gap-[clamp(0.5rem,1.2vw,0.75rem)] p-[clamp(0.5rem,1.2vw,0.75rem)]">
-        {hasAuthorOrDateTime ? (
-          <p className="font-typography-subtitle2 relative mt-[-1.00px] flex min-w-0 items-center self-stretch overflow-hidden whitespace-nowrap text-[clamp(0.75rem,1.7vw,0.875rem)] font-[number:var(--typography-subtitle2-font-weight)] leading-[var(--typography-subtitle2-line-height)] tracking-[var(--typography-subtitle2-letter-spacing)] text-accent [font-style:var(--typography-subtitle2-font-style)]">
-            {author ? <span className="min-w-0 truncate">{author}</span> : null}
-            {author && dateTime ? (
-              <span className="shrink-0 px-[clamp(0.125rem,0.6vw,0.25rem)]">
-                •
-              </span>
-            ) : null}
-            {dateTime ? (
-              <span className="shrink-0 whitespace-nowrap">{dateTime}</span>
-            ) : null}
-          </p>
+        {hasDateTime ? (
+          <div className="items-row flex items-center gap-2">
+            <Calendar size={16} className="text-muted-foreground" />
+            <p className="text-[clamp(0.75rem,1.7vw,0.875rem)] text-muted-foreground">
+              {dateTime}
+            </p>
+          </div>
         ) : null}
 
         <div className="flex min-h-0 flex-1 flex-col justify-between overflow-hidden">
@@ -82,18 +79,25 @@ export function ContentCard({
             </p>
           </div>
 
-          <div className="flex items-center justify-between gap-[clamp(0.25rem,0.8vw,0.375rem)]">
-            <Link
-              aria-label={buttonLabel}
-              className="inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.75rem,1.7vw,0.875rem)] font-semibold text-accent transition-colors hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              href={href}
-            >
-              <span>{buttonLabel}</span>
-              <ArrowRight
-                className="size-[clamp(0.875rem,1.9vw,1rem)]"
-                aria-hidden="true"
-              />
-            </Link>
+          <div className="items-row flex justify-between gap-2">
+            {hasAuthor ? (
+              <p className="text-[clamp(0.75rem,1.7vw,0.875rem)] text-muted-foreground">
+                By {author}
+              </p>
+            ) : null}
+            <div className="flex items-center justify-between gap-[clamp(0.25rem,0.8vw,0.375rem)]">
+              <Link
+                aria-label={buttonLabel}
+                className="inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.75rem,1.7vw,0.875rem)] font-semibold text-muted-foreground transition-colors hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                href={href}
+              >
+                <span>{buttonLabel}</span>
+                <ArrowRight
+                  className="size-[clamp(0.875rem,1.9vw,1rem)]"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
