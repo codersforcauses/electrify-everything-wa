@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+
   {
     variants: {
       variant: {
@@ -14,15 +15,18 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+
         // Tab variants
         primary:
           "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-300 bg-amber-300 text-gray-900",
         secondary:
           "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-200 bg-white text-gray-700 hover:border-amber-300 hover:bg-amber-50",
+        primaryFilter:
+          "rounded-full border border-amber-200 bg-white text-gray-400 hover:border-amber-300 hover:bg-amber-50",
+        secondaryFilter:
+          "h-10 w-10 px-1 py-1 rounded-full border border-amber-300 bg-amber-300 text-gray-900",
 
         // Pagination Variants
         paginationActive: "border border-fuchsia-600 bg-fuchsia-600 text-white",
@@ -31,16 +35,17 @@ const buttonVariants = cva(
         paginationEndpoint:
           "border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40",
 
-        primaryFilter:
-          "rounded-full border border-amber-200 bg-white text-gray-400 hover:border-amber-300 hover:bg-amber-50",
-        secondaryFilter:
-          "h-10 w-10 px-1 py-1 rounded-full border border-amber-300 bg-amber-300 text-gray-900",
+        // Call to Action (CTA) Variant
+        cta: "rounded-full px-5 py-2 border border-accent border-fuchsia-600 bg-fuchsia-600 text-white font-bold opacity-70 hover:opacity-100 transition-opacity duration-200 ease-in-out",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        tab: "h-10 w-10",
+        pagination: "h-8 w-8",
+        inline: "h-auto w-auto p-0",
       },
     },
     defaultVariants: {
