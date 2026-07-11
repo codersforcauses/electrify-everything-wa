@@ -39,7 +39,7 @@ function ResourceCard({ item }: { item: Resource }) {
       author={item.author}
       dateTime={item.date_made}
       href={href}
-      imageSrc={item.image || ""}
+      imageSrc={item.image || "/default-resource-img.jpg"}
       imageAlt={item.name}
       buttonLabel="View"
       className="min-h-[28rem] w-full max-w-none [&_h3]:text-xl [&_p]:text-sm"
