@@ -93,17 +93,6 @@ export default function Resources() {
         <div className="md grid w-full justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <ResourcesCards searchTerm={searchTerm} />
         </div>
-
-        {/* Page Navigation */}
-        <div className="flex justify-center gap-2">
-          <ArrowButton direction="double_left" />
-          <ArrowButton direction="left" />
-          <button className="h-8 w-8 rounded-lg bg-[#C000CC] text-[13px] font-semibold leading-[18px] text-white">
-            1
-          </button>
-          <ArrowButton direction="right" />
-          <ArrowButton direction="double_right" />
-        </div>
       </div>
     </main>
   );
