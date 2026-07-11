@@ -25,16 +25,16 @@ class Migration(migrations.Migration):
                 ),
                 ("name", models.CharField(max_length=255)),
                 ("slug", models.SlugField(max_length=255, unique=True)),
-                ("summary", models.TextField(blank=True, null=True)),
+                ("summary", models.TextField(blank=True)),
                 (
                     "type",
                     models.CharField(
                         choices=[("page", "Page"), ("file", "File")], max_length=10
                     ),
                 ),
-                ("body", models.TextField(blank=True, null=True)),
-                ("file_url", models.URLField(blank=True, null=True)),
-                ("file_name", models.CharField(blank=True, max_length=255, null=True)),
+                ("body", models.TextField(blank=True)),
+                ("file_url", models.URLField(blank=True)),
+                ("file_name", models.CharField(blank=True, max_length=255)),
             ],
         ),
     ]
