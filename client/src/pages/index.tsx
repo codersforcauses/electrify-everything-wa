@@ -112,11 +112,11 @@ export default function Home() {
         </div>
       </div>
       <div className={styles["news-and-events"]}>
-        <div>
+        <div className="flex justify-center">
           <CardContainer cards={quickLinks} />
         </div>
-        <div>
-          <h1 className="text-5xl font-bold">Upcoming Events</h1>
+        <h1 className="m-5 text-5xl font-bold">Upcoming Events</h1>
+        <div className="flex justify-center">
           <CardContainer cards={events} />
         </div>
       </div>

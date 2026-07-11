@@ -18,7 +18,7 @@
 }
 
 .hero-button {
-  height: 5vh;
+  height: 3rem;
   margin: 5% 0% 5% 12%;
   font-size: large;
   color: hsl(var(--foreground));
@@ -41,6 +41,7 @@
 
 .news-and-events {
   width: 82rem;
+  align-items: center;
 }
 
 .quick-links {
@@ -84,6 +85,7 @@
   .news-and-events {
     width: 70vw;
     min-width: 44vw;
+    margin: auto;
   }
 }
 
@@ -121,5 +123,6 @@
 
   .news-and-events {
     width: 24rem;
+
   }
 }
