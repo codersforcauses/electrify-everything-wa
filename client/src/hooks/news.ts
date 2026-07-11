@@ -10,6 +10,7 @@ export interface NewsArticle {
   body: string | null;
   author: string | null;
   published_at: string | null;
+  image: string;
 }
 
 const fetchNews = async () => {
