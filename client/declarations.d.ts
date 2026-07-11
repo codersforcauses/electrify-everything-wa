@@ -4,6 +4,11 @@ declare module "*.module.css" {
 }
 
 declare module "*.png" {
-  const content: string;
+  const content: {
+    src: string;
+    height: number;
+    width: number;
+    blurDataURL?: string;
+  };
   export default content;
 }
