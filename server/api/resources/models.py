@@ -1,7 +1,7 @@
 import uuid
-import datetime
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 # Create your models here.
 
@@ -13,7 +13,7 @@ class ResourceType(models.TextChoices):
 
 class Resource(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    date_made = models.DateField(default=datetime.date.today())
+    date_made = models.DateField(default=timezone.now)
     author = models.CharField(blank=True, default="", max_length=50)
     image = models.ImageField(null=True, blank=True, upload_to="Resource", max_length=None, default=None)
     name = models.CharField(max_length=255)
