@@ -23,7 +23,7 @@ export default function ArticlePage() {
     <div className="font-sans">
       <header className="relative h-[514px] w-full overflow-hidden">
         <Image
-          src={article.image || "/cover-test.jpg"} //default image fallback
+          src={article.image || "/cover-test.jpg"} // Default image fallback
           alt={article.title}
           fill
           className="object-cover"
@@ -32,26 +32,24 @@ export default function ArticlePage() {
 
         <Link
           href="/news"
-          className="absolute left-[98px] top-[65px] inline-flex h-[36px] w-[197px] items-center gap-2 whitespace-nowrap text-[30px] font-semibold leading-[100%] tracking-[0px] text-[#8D8D8D] transition hover:text-white"
+          className="absolute left-[98px] top-[65px] inline-flex items-center gap-2 text-lg font-medium text-gray-500 hover:text-white"
         >
           <ArrowLeft size={24} />
           Back to News
         </Link>
 
-        <div className="absolute left-[98px] top-[165px] z-10 h-[121px] w-[1187px]">
-          <h1 className="text-[50px] font-semibold leading-[100%] tracking-[0px] text-[#FFFFFF]">
-            {article.title}
-          </h1>
+        <div className="absolute left-[98px] top-[165px] z-10">
+          <h1 className="text-4xl font-bold text-white">{article.title}</h1>
         </div>
 
-        <div className="absolute left-[98px] top-[413px] z-10 h-[36px] w-[343px] text-[30px] font-semibold leading-[100%] tracking-[0px] text-[#E1E1E1]">
+        <div className="absolute left-[98px] top-[413px] z-10 text-lg text-gray-300">
           <span>{article.published_at}</span>
-          <span style={{ marginLeft: "20px" }}>By {article.author}</span>
+          <span className="ml-5">By {article.author}</span>
         </div>
       </header>
 
-      <main className="absolute left-[146px] top-[605px] z-10 h-[1008px] w-[1539px]">
-        <div className="text-[38px] font-normal leading-[56px] tracking-[0px] text-[#515154]">
+      <main className="px-10 py-8">
+        <div className="text-lg leading-relaxed text-gray-700">
           <p>{article.body}</p>
         </div>
       </main>
