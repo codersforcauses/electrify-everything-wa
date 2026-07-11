@@ -48,8 +48,8 @@ export default function NewsPage() {
           <ContentCard
             className={`font-sans ${fontSans.variable}`}
             key={featuredArticle.id}
-            imageSrc="/cover-test.jpg"
-            imageAlt="Solar panels on a house"
+            imageSrc={featuredArticle.image || "/cover-test.jpg"}
+            imageAlt={featuredArticle.title}
             title={featuredArticle.title}
             description={featuredArticle.summary ?? ""}
             href={`/news/${featuredArticle.id}`}

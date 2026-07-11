@@ -20,8 +20,8 @@ export function NewsList({ articles }: NewsListProps) {
           <ContentCard
             className={`font-sans ${fontSans.variable}`}
             key={article.id}
-            imageSrc="/cover-test.jpg"
-            imageAlt="Solar panels on a house"
+            imageSrc={article.image || "/cover-test.jpg"}
+            imageAlt={article.title}
             title={article.title}
             description={article.summary ?? ""}
             href={`/news/${article.id}`}
