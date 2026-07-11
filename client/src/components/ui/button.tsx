@@ -23,6 +23,14 @@ const buttonVariants = cva(
           "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-300 bg-amber-300 text-gray-900",
         secondary:
           "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-200 bg-white text-gray-700 hover:border-amber-300 hover:bg-amber-50",
+
+        // Pagination Variants
+        paginationActive: "border border-fuchsia-600 bg-fuchsia-600 text-white",
+        paginationInactive:
+          "border border-fuchsia-200 text-gray-600 hover:border-fuchsia-300 hover:bg-fuchsia-100",
+        paginationEndpoint:
+          "border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40",
+
         primaryFilter:
           "rounded-full border border-amber-200 bg-white text-gray-400 hover:border-amber-300 hover:bg-amber-50",
         secondaryFilter:
