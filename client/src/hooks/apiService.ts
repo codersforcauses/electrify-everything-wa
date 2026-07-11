@@ -4,6 +4,7 @@ import api from "@/lib/api";
 
 export interface Resource {
   id: string;
+  image: string | null;
   name: string;
   date_made: string;
   author: string;
@@ -18,23 +19,38 @@ export interface Resource {
 export const getResources = (
   args?: Omit<UseQueryOptions<Resource[]>, "queryKey" | "queryFn">,
 ) => {
-  return useQuery<Resource[]>({
+  return useQuery<Resource[], Error>({
     ...args,
     queryKey: ["resources"],
-    queryFn: () =>
-      api.get("resources/collection/").then((res) => {
-        return res.data as Resource[];
-      }),
+    queryFn: async () => {
+      const res = await api.get("resources/collection/");
+      return res.data as Resource[];
+    },
   });
   // TODO: Error handling
 };
 
+export async function fetchResourceFromSlug(slug: string): Promise<Resource[]> {
+  const res = await api.get("resources/collection/", {
+    params: {
+      slug,
+    },
+  });
+
+  return res.data as Resource[];
+} //had to create to use in GetServerSideProps since it needs to be async since it runs outside react
+
 export function getResourceFromSlug(slug: string) {
-  return useQuery<Resource>({
+  return useQuery<Resource[], Error>({
     queryKey: ["resources", slug],
-    queryFn: () =>
-      api.get("resources/collection/?slug=" + slug).then((res) => {
-        return res.data[0] as Resource;
-      }),
+    queryFn: async () => {
+      try {
+        const res = await fetchResourceFromSlug(slug);
+        return res as Resource[];
+      } catch (error) {
+        throw new Error("Failed to load"); //create instance of error
+      }
+    },
+    enabled: !!slug,
   });
 }

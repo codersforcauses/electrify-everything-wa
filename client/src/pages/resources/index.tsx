@@ -1,12 +1,13 @@
 import {
-  ArrowRight,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
   Search,
 } from "lucide-react";
+import { useState } from "react";
 
+import { ContentCard } from "@/components/content-card";
 import { getResources, Resource } from "@/hooks/apiService";
 
 type Direction = "double_left" | "left" | "double_right" | "right";
@@ -28,63 +29,81 @@ function ArrowButton({ direction }: { direction: Direction }) {
 }
 
 function ResourceCard({ item }: { item: Resource }) {
-  return (
-    <div className="flex gap-2 overflow-hidden rounded-lg shadow-md">
-      <div className="h-64 w-72 bg-gray-300"></div>
+  const href = `/resources/${item.slug}`;
 
-      <div className="flex flex-col justify-center gap-2 px-12">
-        <p className="text-[#C81FD1]">
-          {item.author} • {item.date_made}
-        </p>
-        <h2 className="text-xl font-bold">{item.name}</h2>
-        <p>{item.summary}</p>
-        <p className="flex items-center gap-1 text-[#C81FD1]">
-          View <ArrowRight className="h-4 w-4" />
-        </p>
-      </div>
-    </div>
+  // TODO: Use the horizontal card component for the mobile layout once it is available.
+  return (
+    <ContentCard
+      title={item.name}
+      description={item.summary}
+      author={item.author}
+      dateTime={item.date_made}
+      href={href}
+      imageSrc={item.image || ""}
+      imageAlt={item.name}
+      buttonLabel="View"
+      className="min-h-[28rem] w-full max-w-none [&_h3]:text-xl [&_p]:text-sm"
+    />
   );
 }
 
-function ResourcesCards() {
+function ResourcesCards({ searchTerm }: { searchTerm: string }) {
   const { data, isLoading } = getResources();
 
   if (isLoading || data === undefined) return <p>Loading...</p>;
 
-  return data.map((item) => <ResourceCard key={item.id} item={item} />);
+  const query = searchTerm.trim().toLowerCase();
+
+  const filteredResources = data.filter((item) => {
+    return item.name.toLowerCase().includes(query);
+  });
+
+  if (filteredResources.length === 0) {
+    return <p>No resources match your search.</p>;
+  }
+
+  return filteredResources.map((item) => (
+    <ResourceCard key={item.id} item={item} />
+  ));
 }
 
 export default function Resources() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <main className="flex flex-col gap-8 px-16 pt-8">
-      {/* Title + Search */}
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">Resources</h1>
+    <main>
+      <div className="mx-auto flex w-full max-w-[90rem] flex-col gap-8 px-4 pt-6 sm:px-8 lg:px-16 lg:pt-8">
+        {/* Title + Search */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl font-bold">Resources</h1>
 
-        {/* Search Box */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4"
-          />
+          {/* Search Box */}
+          <div className="relative w-full md:w-auto">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              className="w-full rounded-lg border border-[#F1F1F1] py-2 pl-9 pr-4 md:w-72"
+            />
+          </div>
         </div>
-      </div>
-      {/* Cards */}
-      <div className="flex flex-col gap-6">
-        <ResourcesCards />
-      </div>
+        {/* Cards */}
+        <div className="md grid w-full justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ResourcesCards searchTerm={searchTerm} />
+        </div>
 
-      {/* Page Navigation */}
-      <div className="flex justify-center gap-2">
-        <ArrowButton direction="double_left" />
-        <ArrowButton direction="left" />
-        <button className="h-8 w-8 rounded-lg bg-[#C000CC] text-[13px] font-semibold leading-[18px] text-white">
-          1
-        </button>
-        <ArrowButton direction="right" />
-        <ArrowButton direction="double_right" />
+        {/* Page Navigation */}
+        <div className="flex justify-center gap-2">
+          <ArrowButton direction="double_left" />
+          <ArrowButton direction="left" />
+          <button className="h-8 w-8 rounded-lg bg-[#C000CC] text-[13px] font-semibold leading-[18px] text-white">
+            1
+          </button>
+          <ArrowButton direction="right" />
+          <ArrowButton direction="double_right" />
+        </div>
       </div>
     </main>
   );
