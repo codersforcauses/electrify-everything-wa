@@ -46,5 +46,6 @@
 @layer base {
   body {
     @apply bg-background text-foreground;
+    @apply font-sans
   }
 }
