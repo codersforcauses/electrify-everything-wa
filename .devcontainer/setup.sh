@@ -22,9 +22,12 @@ fi
 (cd server && mkdir -p static)
 
 # Install dependencies
+sudo apt-get install build-essential
+sudo apt update
+sudo apt install libpq-dev
+
 (cd server && POETRY_VIRTUALENVS_CREATE=false poetry install)
 (cd client && npm install)
-sudo apt-get install build-essential libpq-dev
 # Run the database in the background
 docker compose up -d
 
