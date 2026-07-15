@@ -112,7 +112,7 @@ export default function Navbar() {
         <nav className="flex flex-col gap-6">
           {navLinks.map((nav) => (
             <div key={nav.label} className="flex flex-col gap-3">
-              <p className="text-md uppercase tracking-[0.08em] text-[#FFF4A3]">
+              <p className="text-md font-bold uppercase tracking-[0.08em] text-[#fff9d0]">
                 {nav.label}
               </p>
               <div className="flex flex-col">
@@ -120,7 +120,7 @@ export default function Navbar() {
                   <Link
                     key={child}
                     href={`/${child.replace(/ /g, "-")}`}
-                    className="py-2 text-base hover:text-[#FFF4A3]"
+                    className="px-6 py-2 text-base hover:text-[#FFF4A3]"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {child}
