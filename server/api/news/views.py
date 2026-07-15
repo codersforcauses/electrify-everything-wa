@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from api.news.serializers import NewsSerializer
 from .models import News
+
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
