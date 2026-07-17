@@ -1,8 +1,9 @@
+Savinghorizontalcard.module · CSS
 .card {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  max-width: 720px;
-  font-family: sans-serif;
+  width: 100%;
 }
  
 .leftPanel {
@@ -13,43 +14,19 @@
 }
  
 .rightPanel {
-  flex: 1.2;
-  padding: 1.5rem 0.5rem;
+  flex: 1;
+  overflow-x: auto;
 }
  
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8125rem;
   table-layout: fixed;
-}
- 
-.headerCell {
-  text-align: center;
-  padding: 6px 8px;
-}
- 
-.headerColumnLabel {
-  font-size: 0.75rem;
-  font-weight: 400;
-}
- 
-.headerColumnTotal {
-  font-size: 1rem;
-  font-weight: 700;
 }
  
 .rowLabel {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
-  white-space: nowrap;
-}
- 
-.cell {
-  text-align: center;
-  padding: 6px 8px;
 }
  
 .dot {
@@ -58,5 +35,21 @@
   border-radius: 9999px;
   display: inline-block;
   flex-shrink: 0;
+}
+ 
+@media (min-width: 640px) {
+  .card {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+ 
+  .rightPanel {
+    flex: 1.2;
+  }
+ 
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
 }
  
