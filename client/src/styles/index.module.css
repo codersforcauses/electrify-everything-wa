@@ -25,6 +25,14 @@
   background-color: #fcc11e;
 }
 
+.hero-button:hover {
+  height: 3rem;
+  margin: 5% 0% 5% 12%;
+  font-size: large;
+  color: hsl(var(--foreground));
+  background-color: #fce91e;
+}
+
 .arrow {
   color: hsl(var(--destructive));
   font-size: 1rem;
