@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "api.healthcheck",
     "api.news",
-    "api.resources"
+    "api.resources",
 ]
 
 
@@ -148,8 +148,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))  # <- '/' directory
 
 STATIC_URL = "/static/"
-NEWS_MEDIA_URL = "/news_images/"
-NEWS_MEDIA_ROOT = BASE_DIR / "news_images"
+# NEWS_MEDIA_URL = "/news_images/"
+# NEWS_MEDIA_ROOT = BASE_DIR / "news_images"
 
 # STATIC_ROOT is where the static files get copied to when "collectstatic" is run.
 STATIC_ROOT = "static_files"

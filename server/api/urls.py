@@ -23,10 +23,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/healthcheck/", include(("api.healthcheck.urls"))),
+    path("api/resources/", include(("api.resources.urls"))),
+    path("api/news/", include(("api.news.urls"))),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    path("api/resources/", include(("api.resources.urls"))),
-    urlpatterns += static(settings.NEWS_MEDIA_URL, document_root=settings.NEWS_MEDIA_ROOT)
-    path("api/news/", include(("api.news.urls"))),
