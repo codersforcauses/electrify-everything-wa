@@ -12,7 +12,7 @@ class News(models.Model):
     body = models.TextField(blank=True)
     author = models.CharField(max_length=255, blank=True)
     published_at = models.DateField(blank=True)
-    image = models.ImageField(upload_to='', blank=True, null=True)
+    image = models.ImageField(null=True, blank=True, upload_to="News", max_length=None, default=None)
 
     def __str__(self):
         return self.title
