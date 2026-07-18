@@ -20,23 +20,22 @@ const buttonVariants = cva(
 
         // Tab variants
         primary:
-          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-300 bg-amber-300 text-gray-900",
+          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-primary bg-primary text-gray-900",
         secondary:
-          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-amber-200 bg-white text-gray-700 hover:border-amber-300 hover:bg-amber-50",
-        primaryFilter:
-          "rounded-full border border-amber-200 bg-white text-gray-400 hover:border-amber-300 hover:bg-amber-50",
+          "rounded-xl border px-5 py-2 text-sm font-semibold transition-colors border-secondary bg-white text-gray-700 hover:border-primary hover:bg-secondary",
+        primaryFilter: "rounded-full border border-primary bg-primary",
         secondaryFilter:
-          "h-10 w-10 px-1 py-1 rounded-full border border-amber-300 bg-amber-300 text-gray-900",
+          "h-10 w-10 px-1 py-1 rounded-full border border-secondary bg-white hover:bg-secondary hover:border-primary text-gray-900",
 
         // Pagination Variants
-        paginationActive: "border border-fuchsia-600 bg-fuchsia-600 text-white",
+        paginationActive: "border border-accent bg-accent text-white",
         paginationInactive:
-          "border border-fuchsia-200 text-gray-600 hover:border-fuchsia-300 hover:bg-fuchsia-100",
+          "border border-accent/15 text-gray-600 hover:border-accent hover:accent hover:bg-accent/10",
         paginationEndpoint:
           "border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40",
 
         // Call to Action (CTA) Variant
-        cta: "rounded-full px-5 py-2 border border-accent border-fuchsia-600 bg-fuchsia-600 text-white font-bold opacity-70 hover:opacity-100 transition-opacity duration-200 ease-in-out",
+        cta: "rounded-full px-5 py-2 border border-accent bg-accent text-white font-bold opacity-70 hover:opacity-100 transition-opacity duration-200 ease-in-out",
       },
       size: {
         default: "h-10 px-4 py-2",
