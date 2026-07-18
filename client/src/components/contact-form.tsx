@@ -29,7 +29,7 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("submitting");
     try {
-      await api.post("api/contact/contact/", form);
+      await api.post("/contact/contact/", form);
       setStatus("success");
       setForm(initialForm);
     } catch {
