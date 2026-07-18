@@ -10,6 +10,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
+      // Local development only. Replace this with the production media/CDN
+      // hostname before deployment.
       {
         protocol: "http",
         hostname: "localhost",
