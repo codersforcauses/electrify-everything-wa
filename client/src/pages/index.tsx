@@ -1,4 +1,3 @@
-import { Inter as FontSans } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -9,11 +8,6 @@ import hero_image from "@/public/hero_img.png";
 import styles from "@/styles/index.module.css";
 
 import { Button } from "../components/ui/button";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 /**
  * Returns a list of upcoming events as ContentCardProps to display
@@ -86,7 +80,6 @@ export default function Home() {
     <main
       className={cn(
         "flex min-h-screen flex-col items-center gap-4 p-24 font-sans",
-        fontSans.variable,
       )}
     >
       <div className={styles["hero"]}>

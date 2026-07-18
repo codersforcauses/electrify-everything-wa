@@ -9,7 +9,7 @@ import Navbar from "@/components/ui/Navbar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-montserrat",
   weight: ["400", "500", "600", "700", "800"],
 });
 
