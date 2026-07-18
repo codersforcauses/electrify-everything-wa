@@ -1,16 +1,21 @@
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
 import Providers from "@/components/main/providers";
+import Navbar from "@/components/ui/Navbar";
 
 export const metadata: Metadata = {
   title: "Electrify Everything WA",
   description: "Home Page",
 };
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export default function RootLayout({
   children,
@@ -20,8 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={`${inter.variable} text-soil-800 font-sans`}>
-          <Providers>{children}</Providers>
+        <main className={`${montserrat.variable} font-sans`}>
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
         </main>
       </body>
     </html>
