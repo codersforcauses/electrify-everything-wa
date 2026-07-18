@@ -43,5 +43,30 @@
   background: hsl(var(--accent));
 }
 
-@media (max-width: 768px) {
+@media (min-width: 52rem) and (max-width: 82rem) {
+  .arrow {
+    display: none;
+  }
+
+  .wrapper {
+    gap: 0;
+  }
+
+  .card-container {
+    max-width: calc(2 * clamp(18rem, 30vw, 24rem) + 1rem);
+  }
+}
+
+@media (max-width: 51rem) {
+  .arrow {
+    display: none;
+  }
+
+  .wrapper {
+    gap: 0;
+  }
+
+  .card-container {
+    max-width: calc(1 * clamp(18rem, 30vw, 24rem) + 1rem);
+  }
 }
