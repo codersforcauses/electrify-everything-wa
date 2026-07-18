@@ -27,5 +27,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.NEWS_MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.NEWS_MEDIA_URL, document_root=settings.NEWS_MEDIA_ROOT)
     path("api/resources/", include(("api.resources.urls"))),
