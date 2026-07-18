@@ -21,13 +21,15 @@ const LOCATIONS = [
   "Various Locations",
 ];
 
+type Location = (typeof LOCATIONS)[number];
+
 const fmt = (iso: string) => {
   if (!iso) return "";
   const [, m, d] = iso.split("-");
   return `${d}/${m}`;
 };
 
-export default function EventFilters() {
+export default function EventFilter() {
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const [timeRange, setTimeRange] = useState({ start: "", end: "" });
   const [locations, setLocations] = useState<string[]>(["City of Stirling"]);
