@@ -13,7 +13,7 @@ function AboutIntro() {
         Electrify Everything WA is a volunteer-run, non-aligned, not-for-profit,
         incorporated organisation representing community groups across WA.
       </p>
-      <div className="mb-8 w-28 border-b-2 border-[#F5D76E]" />
+      <div className="mx-auto mb-8 w-40 border-b-2 border-[#FBBF3B]" />
       <p>
         We aim to accelerate the electrification of households and communities,
         replacing fossil fuels with efficient electric technologies powered by
@@ -106,7 +106,7 @@ export default function AboutPage() {
   return (
     <main>
       {/* Cream → yellow gradient wraps intro + cards, like the mockup */}
-      <div className="bg-gradient-to-b from-[#ffdc83] to-[#FDF6E3] pb-16">
+      <div className="bg-gradient-to-b from-[#FCE49C] via-[#FFFDF4] to-[#FFFDF4] pb-24">
         <AboutIntro />
         <div className="mt-12">
           <InfoCards />
