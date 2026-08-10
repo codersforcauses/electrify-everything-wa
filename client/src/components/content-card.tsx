@@ -116,7 +116,7 @@ export function ContentCard({
             <div className="flex items-center justify-between gap-[clamp(0.25rem,0.8vw,0.375rem)]">
               <Link
                 aria-label={buttonLabel}
-                className="inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.75rem,1.7vw,0.875rem)] font-semibold text-muted-foreground transition-colors hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.75rem,1.7vw,0.875rem)] font-semibold text-muted-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 href={href}
               >
                 <span>{buttonLabel}</span>

@@ -72,7 +72,7 @@ export function HorizontalCard({
 
         <Link
           aria-label={buttonLabel}
-          className="mt-1 inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.85rem,1.7vw,0.95rem)] font-semibold text-primary transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="mt-1 inline-flex w-fit items-center gap-[clamp(0.25rem,0.8vw,0.375rem)] text-[clamp(0.85rem,1.7vw,0.95rem)] font-semibold text-accent transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           href={href}
         >
           <span>{buttonLabel}</span>
