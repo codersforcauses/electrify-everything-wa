@@ -13,6 +13,8 @@ const buttonVariants = cva(
         default: "bg-black text-white", // default should stay B/W (simple)
         destructive:
           "rounded-xl bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "rounded-xl bg-background hover:bg-accent hover:text-accent-foreground",
         ghost:
           "rounded-xl border border-gray-300 text-gray-600 hover:border-accent",
         link: "text-accent underline-offset-4 hover:underline",
