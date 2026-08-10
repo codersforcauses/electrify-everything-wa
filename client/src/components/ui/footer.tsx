@@ -4,9 +4,9 @@ import { ChevronsUp } from "lucide-react";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import * as React from "react";
-import { BsFacebook,BsInstagram, BsLinkedin } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -81,7 +81,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* back to top + charity badge */}
+            {/* back to top */}
             <div className="flex flex-wrap items-center gap-4">
               <Button
                 variant="outline"
@@ -92,8 +92,6 @@ export default function Footer() {
                 <ChevronsUp className="h-4 w-4" />
                 Back to top
               </Button>
-
-              <CharityBadge />
             </div>
           </div>
 
@@ -128,27 +126,6 @@ export default function Footer() {
         </p>
       </div>
     </footer>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Charity badge
-// ---------------------------------------------------------------------------
-function CharityBadge() {
-  return (
-    <a
-      href="https://www.acnc.gov.au/charity/charities/YOUR-ABN-OR-CHARITY-ID/profile"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="View our registration on the ACNC Charity Register"
-    >
-      <Image
-        src="/registered-charity-icon.png"
-        alt="ACNC Registered Charity Tick"
-        width={170}
-        height={170}
-      />
-    </a>
   );
 }
 
