@@ -294,3 +294,4 @@ dist
 opt/
 
 docker/db/*
+server/media/
