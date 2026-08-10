@@ -6,24 +6,44 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-black text-white", // default should stay B/W (simple)
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "rounded-xl bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "rounded-xl bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost:
+          "rounded-xl border border-gray-300 text-gray-600 hover:border-accent",
+        link: "text-accent underline-offset-4 hover:underline",
+
+        // Tab variants
+        primary:
+          "rounded-xl border px-5 py-2 text-sm transition-colors border-primary bg-primary text-gray-900 opacity-100 hover:bg-primary/80",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "rounded-xl border px-5 py-2 text-sm transition-colors border-secondary bg-white text-gray-700 hover:border-primary hover:bg-secondary",
+
+        // Pagination Variants
+        paginationActive:
+          "rounded-xl border border-accent bg-accent text-white",
+        paginationInactive:
+          "rounded-xl border border-gray-300 text-gray-600 hover:border-accent",
+        paginationEndpoint:
+          "rounded-xl border border-gray-300 text-gray-600 hover:border-accent disabled:cursor-not-allowed disabled:opacity-40",
+
+        // Call to Action (CTA) Variant
+        cta: "rounded-full px-5 py-2 border border-accent bg-accent/80 text-accent-foreground font-bold hover:bg-accent transition-colours", // pill shape
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-9 px-3",
+        lg: "h-11 px-8",
         icon: "h-10 w-10",
+        tab: "h-10 w-10",
+        pagination: "h-8 w-8",
+        inline: "h-auto w-auto p-0",
       },
     },
     defaultVariants: {
