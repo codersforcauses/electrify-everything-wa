@@ -8,6 +8,7 @@ import hero_image from "@/public/hero_img.png";
 import styles from "@/styles/index.module.css";
 
 import { Button } from "../components/ui/button";
+import Footer from "../components/ui/footer";
 
 /**
  * Returns a list of upcoming events as ContentCardProps to display
