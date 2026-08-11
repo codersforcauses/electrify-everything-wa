@@ -1,3 +1,6 @@
+import { Inter as FontSans } from "next/font/google";
+import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 

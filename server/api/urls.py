@@ -25,6 +25,8 @@ urlpatterns = [
     path("api/healthcheck/", include(("api.healthcheck.urls"))),
     path("api/contact/", include(("api.contact.urls"))),
     path("api/resources/", include(("api.resources.urls"))),
+    path("api/news/", include(("api.news.urls"))),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
