@@ -1,3 +1,4 @@
+"use client";
 import { ArrowLeft, Calendar, FileText } from "lucide-react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";

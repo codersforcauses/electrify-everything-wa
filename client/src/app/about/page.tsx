@@ -81,10 +81,9 @@ function InfoCards() {
 function HistorySection() {
   return (
     <section className="relative px-8 py-20">
-      {/* Background image — add solar-panels.jpg to public/images/ */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/solar-panels.jpg')" }}
+        style={{ backgroundImage: "url('/public/default-resource.jpg')" }}
       />
       {/* Dark overlay so text stays readable */}
       <div className="absolute inset-0 bg-black/60" />

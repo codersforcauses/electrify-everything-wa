@@ -1,5 +1,9 @@
+"use client";
+
+import { Inter as FontSans } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { ContentCard, ContentCardProps } from "@/components/content-card";
 import CardContainer from "@/components/ui/card_container";
