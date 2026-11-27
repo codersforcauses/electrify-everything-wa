@@ -8,6 +8,18 @@ const isWindowsDevContainer = () =>
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      // Local development only. Replace this with the production media/CDN
+      // hostname before deployment.
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+        pathname: "/media/**",
+      },
+    ],
+  },
   // dumb fix for windows docker
   webpack: isWindowsDevContainer()
     ? (config) => {

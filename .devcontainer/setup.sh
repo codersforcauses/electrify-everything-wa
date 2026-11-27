@@ -12,19 +12,22 @@ git config --global --add --bool push.autoSetupRemote true
 
 # Create .env files if it doesn't exist
 if [ ! -f ./client/.env ]; then
-    cp ./client/.env.example ./client/.env
+  cp ./client/.env.example ./client/.env
 fi
 if [ ! -f ./server/.env ]; then
-    cp ./server/.env.example ./server/.env
+  cp ./server/.env.example ./server/.env
 fi
 
 # Make the Django static folder to remove the annoying warning
 (cd server && mkdir -p static)
 
 # Install dependencies
+sudo apt-get install build-essential
+sudo apt update
+sudo apt install libpq-dev
+
 (cd server && POETRY_VIRTUALENVS_CREATE=false poetry install)
 (cd client && npm install)
-
 # Run the database in the background
 docker compose up -d
 
@@ -33,7 +36,7 @@ docker compose up -d
 DB_CONTAINER_ID=$(docker compose ps -q db)
 echo "Waiting for the database to be ready..."
 until [ "$(docker inspect -f '{{.State.Health.Status}}' "$DB_CONTAINER_ID")" == "healthy" ]; do
-    sleep 1
+  sleep 1
 done
 
 # Nuke and migrate db

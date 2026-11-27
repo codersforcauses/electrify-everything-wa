@@ -1,0 +1,72 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0rem;
+  /* Cap the row so roughly 3 full-width cards show at once, with a peek of the
+     next one hinting there's more to scroll to -- without this, a wide enough
+     screen can fit every card and the arrows do nothing. */
+  max-width: 74rem;
+  scroll-behavior: smooth;
+  /* Snap to the start of each card so a scroll click never leaves a card
+     half-visible -- the browser handles alignment natively instead of us
+     guessing a pixel amount in JS that would drift out of sync with the
+     card's responsive width. */
+  scroll-snap-type: x mandatory;
+  /* hide scrollbar */
+  scrollbar-width: none;
+}
+
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.arrow:hover {
+  background: hsl(var(--accent));
+}
+
+@media (min-width: 52rem) and (max-width: 82rem) {
+  .arrow {
+    display: none;
+  }
+
+  .wrapper {
+    gap: 0;
+  }
+
+  .card-container {
+    max-width: calc(2 * clamp(18rem, 30vw, 24rem) + 1rem);
+  }
+}
+
+@media (max-width: 51rem) {
+  .arrow {
+    display: none;
+  }
+
+  .wrapper {
+    gap: 0;
+  }
+
+  .card-container {
+    max-width: calc(1 * clamp(18rem, 30vw, 24rem) + 1rem);
+  }
+}
